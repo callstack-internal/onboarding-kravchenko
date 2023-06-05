@@ -1,4 +1,12 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: '@callstack',
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+  ],
 };
