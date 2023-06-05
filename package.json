@@ -2,11 +2,13 @@
   "name": "onboarding",
   "version": "0.0.1",
   "private": true,
+  "author": "Mykhailo Kravchenko",
   "scripts": {
+    "start": "react-native start",
+    "start-reset-cache": "watchman watch-del-all && react-native start --reset-cache",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint --ext '.js,.jsx,.ts,tsx' ./src",
-    "start": "react-native start",
     "test": "jest"
   },
   "dependencies": {
