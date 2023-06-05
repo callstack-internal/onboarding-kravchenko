@@ -8,6 +8,7 @@
     "start-reset-cache": "watchman watch-del-all && react-native start --reset-cache",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "android-port-reverse": "adb reverse tcp:8081 tcp:8081",
     "lint": "eslint --ext '.js,.jsx,.ts,tsx' ./src",
     "test": "jest"
   },
