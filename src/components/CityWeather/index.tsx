@@ -3,10 +3,9 @@ import {Image, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import {opacity} from '@app/theme/index';
 
-// TODO: Add path
-import {RootStackParamList, RootStackScreen} from '../../navigation';
 import styles from './styles';
 
 // TODO: Do not expert once API is ready

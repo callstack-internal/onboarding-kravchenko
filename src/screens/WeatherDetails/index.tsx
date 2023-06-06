@@ -2,11 +2,10 @@ import React, {FC} from 'react';
 import {ScrollView, View} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
 
+import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import CityWeather from '@app/components/CityWeather';
 import DetailsRow from '@app/components/DetailsRow';
 
-// TODO: Add path
-import {RootStackParamList, RootStackScreen} from '../../navigation';
 import styles from './styles';
 
 // TODO: Use real data once API is ready

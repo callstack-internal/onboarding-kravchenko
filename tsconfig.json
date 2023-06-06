@@ -15,6 +15,9 @@
       "@app/theme/*": [
         "./theme/*"
       ],
+      "@app/types/*": [
+        "./types/*"
+      ],
     },
   }
 }

@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {RootStackParamList, RootStackScreen} from './navigation';
 import {colors, fonts} from './theme';
 
+import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import WeatherScreen from '@app/screens/Weather';
 import WeatherDetailsScreen from '@app/screens/WeatherDetails';
 
