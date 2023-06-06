@@ -1,12 +1,11 @@
-// TODO: Figure out a solution
-/* eslint-disable import/no-extraneous-dependencies */
 import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {RootStackParamList, RootStackScreen} from './navigation';
-import WeatherScreen from './screens/Weather';
-import WeatherDetailsScreen from './screens/WeatherDetails';
+
+import WeatherScreen from '@app/screens/Weather';
+import WeatherDetailsScreen from '@app/screens/WeatherDetails';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
