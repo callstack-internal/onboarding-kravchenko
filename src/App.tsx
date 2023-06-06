@@ -3,24 +3,41 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {RootStackParamList, RootStackScreen} from './navigation';
+import {colors, fonts} from './theme';
 
 import WeatherScreen from '@app/screens/Weather';
 import WeatherDetailsScreen from '@app/screens/WeatherDetails';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+const defaultScreenOptions = {
+  headerTitleStyle: {
+    ...fonts.heading,
+  },
+  headerStyle: {
+    backgroundColor: colors.secondaryBackground,
+  },
+  headerTintColor: colors.foreground,
+  headerBackTitleVisible: false,
+};
 
 const App: FC = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator screenOptions={defaultScreenOptions}>
         <RootStack.Screen
           name={RootStackScreen.Weather}
           component={WeatherScreen}
+          options={{
+            headerTitle: 'Weather',
+          }}
         />
 
         <RootStack.Screen
           name={RootStackScreen.WeatherDetails}
           component={WeatherDetailsScreen}
+          options={{
+            headerTitle: '',
+          }}
         />
       </RootStack.Navigator>
     </NavigationContainer>
