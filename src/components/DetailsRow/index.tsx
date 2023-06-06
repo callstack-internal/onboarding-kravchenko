@@ -11,7 +11,7 @@ interface Props {
 const DetailsRow: FC<Props> = ({title, value}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title} numberOfLines={1}>
+      <Text style={styles.title} numberOfLines={2}>
         {title}
       </Text>
 

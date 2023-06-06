@@ -7,6 +7,7 @@ export default StyleSheet.create({
   container: {
     width: SQUARE,
     height: SQUARE,
+    padding: sizes.sm,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: borderRadius.sm,
