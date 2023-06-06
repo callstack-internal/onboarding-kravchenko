@@ -1,9 +1,12 @@
 import React, {FC} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+
+import {opacity} from '@app/theme/index';
 
 import styles from './styles';
 
-interface Props {
+// TODO: Do not expert once API is ready
+export interface Props {
   city: string;
   status: string;
   iconCode: string;
@@ -12,10 +15,20 @@ interface Props {
 
 const CityWeather: FC<Props> = ({iconCode, city, status, temperature}) => {
   const iconUri = `https://openweathermap.org/img/wn/${iconCode}.png`;
+  const temperatureText = `${temperature} °C`;
+
+  const onPress = () => {
+    // TODO: Add handler
+  };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={opacity.active}
+      accessibilityRole="button"
+      onPress={onPress}>
       <Image
+        style={styles.icon}
         source={{uri: iconUri, cache: 'force-cache'}}
         accessibilityIgnoresInvertColors
       />
@@ -30,10 +43,12 @@ const CityWeather: FC<Props> = ({iconCode, city, status, temperature}) => {
         </Text>
       </View>
 
-      <Text style={styles.temperatureBadge} numberOfLines={1}>
-        {temperature}
-      </Text>
-    </View>
+      <View style={styles.temperatureContainer}>
+        <Text style={styles.temperatureTitle} numberOfLines={1}>
+          {temperatureText}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
