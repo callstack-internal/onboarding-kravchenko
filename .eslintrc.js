@@ -9,4 +9,13 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
+  rules: {
+    // TODO: Figure out a solution to enable the rule
+    'import/no-extraneous-dependencies': 'off',
+  },
 };
