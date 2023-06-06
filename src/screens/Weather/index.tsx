@@ -10,36 +10,42 @@ import styles from './styles';
 // TODO: Remove once API is ready
 const CITIES: CityWeatherProps[] = [
   {
+    cityId: 43423,
     city: 'Sumy',
     status: 'Clear',
     iconCode: '01d',
     temperature: 22.5,
   },
   {
+    cityId: 53423,
     city: 'Kyiv',
     status: 'Few clouds',
     iconCode: '02d',
     temperature: 20.3,
   },
   {
+    cityId: 43453,
     city: 'Warsaw',
     status: 'Scattered clouds',
     iconCode: '03d',
     temperature: 17.3,
   },
   {
+    cityId: 43423,
     city: 'Sumy',
     status: 'Clear',
     iconCode: '01d',
     temperature: 22.5,
   },
   {
+    cityId: 53423,
     city: 'Kyiv',
     status: 'Few clouds',
     iconCode: '02d',
     temperature: 20.3,
   },
   {
+    cityId: 43453,
     city: 'Warsaw',
     status: 'Scattered clouds',
     iconCode: '03d',

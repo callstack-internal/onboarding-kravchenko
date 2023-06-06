@@ -1,24 +1,40 @@
 import React, {FC} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {opacity} from '@app/theme/index';
 
+// TODO: Add path
+import {RootStackParamList, RootStackScreen} from '../../navigation';
 import styles from './styles';
 
 // TODO: Do not expert once API is ready
 export interface Props {
-  city: string;
-  status: string;
   iconCode: string;
+  city: string;
+  cityId: number;
+  status: string;
   temperature: number;
 }
 
-const CityWeather: FC<Props> = ({iconCode, city, status, temperature}) => {
+const CityWeather: FC<Props> = ({
+  iconCode,
+  city,
+  cityId,
+  status,
+  temperature,
+}) => {
+  const {navigate} =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const iconUri = `https://openweathermap.org/img/wn/${iconCode}.png`;
   const temperatureText = `${temperature} °C`;
 
   const onPress = () => {
-    // TODO: Add handler
+    navigate(RootStackScreen.WeatherDetails, {
+      cityId,
+    });
   };
 
   return (
