@@ -9,4 +9,8 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    // TODO: Figure out a solution to enable the rule
+    'import/no-extraneous-dependencies': 'off',
+  },
 };
