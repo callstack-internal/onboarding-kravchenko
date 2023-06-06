@@ -1,10 +1,10 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "typeRoots": [
-    "./src/types"
-  ],
   "compilerOptions": {
     "baseUrl": "src",
+    "typeRoots": [
+      "./types"
+    ],
     "paths": {
       "@app/screens/*": [
         "./screens/*"
