@@ -4,5 +4,14 @@
     "typeRoots": [
       "./src/types"
     ],
+    "baseUrl": "src",
+    "paths": {
+      "@app/screens/*": [
+        "./screens/*"
+      ],
+      "@app/components/*": [
+        "./components/*"
+      ],
+    },
   }
 }
