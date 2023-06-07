@@ -4,7 +4,7 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import CityWeather from '@app/components/CityWeather';
-import DetailsRow from '@app/components/DetailsRow';
+import DetailsSquare from '@app/components/DetailsSquare';
 
 import styles from './styles';
 
@@ -34,20 +34,20 @@ const WeatherDetailsScreen = () => {
         contentContainerStyle={styles.detailsContentContainer}
         showsVerticalScrollIndicator={false}
         bounces={false}>
-        <DetailsRow
+        <DetailsSquare
           title="🌡️ Feels like"
           value={`${temperatureFeelsLike} °C`}
         />
 
-        <DetailsRow title="💨 Wind speed" value={`${windSpeed} km/h`} />
+        <DetailsSquare title="💨 Wind speed" value={`${windSpeed} km/h`} />
 
-        <DetailsRow title="☁️ Clouds" value={`${clouds} %`} />
+        <DetailsSquare title="☁️ Clouds" value={`${clouds} %`} />
 
-        <DetailsRow title="👓 Visibility" value={`${visibility} m`} />
+        <DetailsSquare title="👓 Visibility" value={`${visibility} m`} />
 
-        <DetailsRow title="🗜️ Pressure" value={`${pressure} hPa`} />
+        <DetailsSquare title="🗜️ Pressure" value={`${pressure} hPa`} />
 
-        <DetailsRow title="💧 Humidity" value={`${humidity} %`} />
+        <DetailsSquare title="💧 Humidity" value={`${humidity} %`} />
       </ScrollView>
     </View>
   );

@@ -8,7 +8,7 @@ type Props = {
   value: string;
 };
 
-const DetailsRow = ({title, value}: Props) => {
+const DetailsSquare = ({title, value}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title} numberOfLines={2}>
@@ -22,4 +22,4 @@ const DetailsRow = ({title, value}: Props) => {
   );
 };
 
-export default DetailsRow;
+export default DetailsSquare;
