@@ -8,39 +8,45 @@ import DetailsRow from '@app/components/DetailsRow';
 
 import styles from './styles';
 
-// TODO: Use real data once API is ready
 const WeatherDetailsScreen = () => {
+  const {params: cityWeather} =
+    useRoute<RouteProp<RootStackParamList, RootStackScreen.WeatherDetails>>();
+
   const {
-    params: {cityId},
-  } = useRoute<RouteProp<RootStackParamList, RootStackScreen.WeatherDetails>>();
+    temperatureFeelsLike,
+    windSpeed,
+    clouds,
+    visibility,
+    pressure,
+    humidity,
+  } = cityWeather;
 
   return (
     <View style={styles.container}>
       <CityWeather
         style={styles.cityWeatherContainer}
-        cityId={cityId}
-        city="Sumy"
-        status="Clear"
-        iconCode="01d"
-        temperature={22.5}
         pressable={false}
+        cityWeather={cityWeather}
       />
 
       <ScrollView
         style={styles.detailsContainer}
         contentContainerStyle={styles.detailsContentContainer}
         bounces={false}>
-        <DetailsRow title="🌡️ Feels like" value="21 °C" />
+        <DetailsRow
+          title="🌡️ Feels like"
+          value={`${temperatureFeelsLike} °C`}
+        />
 
-        <DetailsRow title="💨 Wind speed" value="5 km/h" />
+        <DetailsRow title="💨 Wind speed" value={`${windSpeed} km/h`} />
 
-        <DetailsRow title="☁️ Clouds" value="30 %" />
+        <DetailsRow title="☁️ Clouds" value={`${clouds} %`} />
 
-        <DetailsRow title="👓 Visibility" value="1000 m" />
+        <DetailsRow title="👓 Visibility" value={`${visibility} m`} />
 
-        <DetailsRow title="🗜️ Pressure" value="1001 hPa" />
+        <DetailsRow title="🗜️ Pressure" value={`${pressure} hPa`} />
 
-        <DetailsRow title="💧 Humidity" value="40 %" />
+        <DetailsRow title="💧 Humidity" value={`${humidity} %`} />
       </ScrollView>
     </View>
   );

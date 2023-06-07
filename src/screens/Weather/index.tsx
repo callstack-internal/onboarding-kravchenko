@@ -1,63 +1,30 @@
 import React from 'react';
 import {FlatList, ListRenderItem, View} from 'react-native';
+import {useQuery} from '@tanstack/react-query';
 
-import CityWeather, {
-  Props as CityWeatherProps,
-} from '@app/components/CityWeather';
+import fetchCitiesWeather from '@app/api/fetchCitiesWeather';
+import cityIdList from '@app/config/cityIdList';
+import CityWeather from '@app/components/CityWeather';
+import TCityWeather from '@app/types/CityWeather';
 
 import styles from './styles';
 
-// TODO: Remove once API is ready
-const CITIES: CityWeatherProps[] = [
-  {
-    cityId: 43423,
-    city: 'Sumy',
-    status: 'Clear',
-    iconCode: '01d',
-    temperature: 22.5,
-  },
-  {
-    cityId: 53423,
-    city: 'Kyiv',
-    status: 'Few clouds',
-    iconCode: '02d',
-    temperature: 20.3,
-  },
-  {
-    cityId: 43453,
-    city: 'Warsaw',
-    status: 'Scattered clouds',
-    iconCode: '03d',
-    temperature: 17.3,
-  },
-  {
-    cityId: 43423,
-    city: 'Sumy',
-    status: 'Clear',
-    iconCode: '01d',
-    temperature: 22.5,
-  },
-  {
-    cityId: 53423,
-    city: 'Kyiv',
-    status: 'Few clouds',
-    iconCode: '02d',
-    temperature: 20.3,
-  },
-  {
-    cityId: 43453,
-    city: 'Warsaw',
-    status: 'Scattered clouds',
-    iconCode: '03d',
-    temperature: 17.3,
-  },
-];
-
 const WeatherScreen = () => {
-  const keyExtractor = (_: CityWeatherProps, index: number) => index.toString();
+  const {data, isLoading, isError, isRefetching, refetch} = useQuery({
+    queryKey: ['weather'],
+    queryFn: () => fetchCitiesWeather(cityIdList),
+  });
 
-  const renderItem: ListRenderItem<CityWeatherProps> = ({item}) => (
-    <CityWeather {...item} />
+  // TODO: Remove logs
+  console.log('isLoading >', isLoading);
+  console.log('isRefetching >', isRefetching);
+  console.log('isError >', isError);
+  console.log('data >', data);
+
+  const keyExtractor = ({city}: TCityWeather) => city;
+
+  const renderItem: ListRenderItem<TCityWeather> = ({item}) => (
+    <CityWeather cityWeather={item} />
   );
 
   const renderSeparator = () => <View style={styles.separator} />;
@@ -66,10 +33,12 @@ const WeatherScreen = () => {
     <FlatList
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
-      data={CITIES}
+      data={data ?? []}
+      refreshing={isRefetching}
       ItemSeparatorComponent={renderSeparator}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      onRefresh={refetch}
     />
   );
 };
