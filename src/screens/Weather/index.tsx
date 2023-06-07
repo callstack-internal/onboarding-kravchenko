@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {FlatList, ListRenderItem, View} from 'react-native';
 
 import CityWeather, {
@@ -53,7 +53,7 @@ const CITIES: CityWeatherProps[] = [
   },
 ];
 
-const WeatherScreen: FC = () => {
+const WeatherScreen = () => {
   const keyExtractor = (_: CityWeatherProps, index: number) => index.toString();
 
   const renderItem: ListRenderItem<CityWeatherProps> = ({item}) => (

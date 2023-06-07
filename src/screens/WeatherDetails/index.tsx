@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
 
@@ -9,7 +9,7 @@ import DetailsRow from '@app/components/DetailsRow';
 import styles from './styles';
 
 // TODO: Use real data once API is ready
-const WeatherDetailsScreen: FC = () => {
+const WeatherDetailsScreen = () => {
   const {
     params: {cityId},
   } = useRoute<RouteProp<RootStackParamList, RootStackScreen.WeatherDetails>>();

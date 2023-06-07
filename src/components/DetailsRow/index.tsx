@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 
 import styles from './styles';
@@ -8,7 +8,7 @@ type Props = {
   value: string;
 };
 
-const DetailsRow: FC<Props> = ({title, value}) => {
+const DetailsRow = ({title, value}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title} numberOfLines={2}>

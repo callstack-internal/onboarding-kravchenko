@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {Image, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -19,7 +19,7 @@ export type Props = {
   pressable?: boolean;
 };
 
-const CityWeather: FC<Props> = ({
+const CityWeather = ({
   style,
   iconCode,
   city,
@@ -27,7 +27,7 @@ const CityWeather: FC<Props> = ({
   status,
   temperature,
   pressable = true,
-}) => {
+}: Props) => {
   const {navigate} =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
