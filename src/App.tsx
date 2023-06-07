@@ -1,12 +1,13 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {QueryClientProvider} from '@tanstack/react-query';
 
-import {colors, fonts} from './theme';
-
+import queryClient from '@app/api/queryClient';
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import WeatherScreen from '@app/screens/Weather';
 import WeatherDetailsScreen from '@app/screens/WeatherDetails';
+import {colors, fonts} from '@app/theme/index';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const defaultScreenOptions = {
@@ -23,25 +24,27 @@ const defaultScreenOptions = {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <RootStack.Navigator screenOptions={defaultScreenOptions}>
-        <RootStack.Screen
-          name={RootStackScreen.Weather}
-          component={WeatherScreen}
-          options={{
-            headerTitle: 'Weather',
-          }}
-        />
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <RootStack.Navigator screenOptions={defaultScreenOptions}>
+          <RootStack.Screen
+            name={RootStackScreen.Weather}
+            component={WeatherScreen}
+            options={{
+              headerTitle: 'Weather',
+            }}
+          />
 
-        <RootStack.Screen
-          name={RootStackScreen.WeatherDetails}
-          component={WeatherDetailsScreen}
-          options={{
-            headerTitle: '',
-          }}
-        />
-      </RootStack.Navigator>
-    </NavigationContainer>
+          <RootStack.Screen
+            name={RootStackScreen.WeatherDetails}
+            component={WeatherDetailsScreen}
+            options={{
+              headerTitle: '',
+            }}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 };
 
