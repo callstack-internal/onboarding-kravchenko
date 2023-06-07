@@ -18,6 +18,12 @@
       "@app/types/*": [
         "./types/*"
       ],
+      "@app/api/*": [
+        "./api/*"
+      ],
+      "@app/config/*": [
+        "./config/*"
+      ],
     },
   }
 }
