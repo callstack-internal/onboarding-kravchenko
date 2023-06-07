@@ -2,6 +2,7 @@ import {API_KEY} from 'react-native-dotenv';
 
 import SimpleObject from '@app/types/SimpleObject';
 import CityWeather from '@app/types/CityWeather';
+import endpoints from '@app/config/endpoints';
 
 import buildUrl from './buildUrl';
 
@@ -11,7 +12,7 @@ const fetchCitiesWeather = async (
   try {
     const ids = cityIds.join(',');
 
-    const url = buildUrl('data/2.5/group', {
+    const url = buildUrl(endpoints.weatherGroup, {
       id: ids,
       units: 'metric',
       appid: API_KEY,
