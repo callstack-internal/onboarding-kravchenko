@@ -3,10 +3,10 @@ import {Text, View} from 'react-native';
 
 import styles from './styles';
 
-interface Props {
+type Props = {
   title: string;
   value: string;
-}
+};
 
 const DetailsRow: FC<Props> = ({title, value}) => {
   return (

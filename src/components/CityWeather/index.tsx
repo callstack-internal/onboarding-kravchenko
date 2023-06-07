@@ -9,7 +9,7 @@ import {opacity} from '@app/theme/index';
 import styles from './styles';
 
 // TODO: Do not expert once API is ready
-export interface Props {
+export type Props = {
   style?: ViewStyle;
   iconCode: string;
   city: string;
@@ -17,7 +17,7 @@ export interface Props {
   status: string;
   temperature: number;
   pressable?: boolean;
-}
+};
 
 const CityWeather: FC<Props> = ({
   style,
