@@ -44,19 +44,19 @@ export const fonts = {
   heading: {
     color: colors.foreground,
     fontSize: 24,
-    fontWeight: '800' as '800',
+    fontWeight: '800',
   },
   subheading: {
     color: colors.foreground,
     fontSize: 18,
-    fontWeight: '500' as '500',
+    fontWeight: '500',
   },
   caption: {
     color: colors.foreground,
     fontSize: 16,
-    fontWeight: '400' as '400',
+    fontWeight: '400',
   },
-};
+} as const;
 
 export const opacity = {
   initial: 1,
