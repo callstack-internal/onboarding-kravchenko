@@ -32,6 +32,7 @@ const WeatherDetailsScreen = () => {
       <ScrollView
         style={styles.detailsContainer}
         contentContainerStyle={styles.detailsContentContainer}
+        showsVerticalScrollIndicator={false}
         bounces={false}>
         <DetailsRow
           title="🌡️ Feels like"
