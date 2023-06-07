@@ -1,15 +1,21 @@
-import {API_KEY, API_URL} from 'react-native-dotenv';
+import {API_KEY} from 'react-native-dotenv';
 
 import SimpleObject from '@app/types/SimpleObject';
 import CityWeather from '@app/types/CityWeather';
+
+import buildUrl from './buildUrl';
 
 const fetchCitiesWeather = async (
   cityIds: number[],
 ): Promise<CityWeather[]> => {
   try {
     const ids = cityIds.join(',');
-    const url =
-      API_URL + `data/2.5/group?id=${ids}&units=metric&appid=${API_KEY}`;
+
+    const url = buildUrl('data/2.5/group', {
+      id: ids,
+      units: 'metric',
+      appid: API_KEY,
+    });
 
     const response = await fetch(url, {
       method: 'GET',
