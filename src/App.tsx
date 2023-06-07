@@ -18,8 +18,8 @@ const defaultScreenOptions = {
   },
   headerTintColor: colors.foreground,
   headerBackTitleVisible: false,
-  headerTitleAlign: 'center' as 'center',
-};
+  headerTitleAlign: 'center',
+} as const;
 
 const App = () => {
   return (
