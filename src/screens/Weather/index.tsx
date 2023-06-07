@@ -1,25 +1,20 @@
-import React from 'react';
-import {FlatList, ListRenderItem, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Alert, FlatList, ListRenderItem, View} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 
 import fetchCitiesWeather from '@app/api/fetchCitiesWeather';
 import cityIdList from '@app/config/cityIdList';
 import CityWeather from '@app/components/CityWeather';
+import Loader from '@app/components/Loader';
 import TCityWeather from '@app/types/CityWeather';
 
 import styles from './styles';
 
 const WeatherScreen = () => {
-  const {data, isLoading, isError, isRefetching, refetch} = useQuery({
+  const {data, isError, isRefetching, refetch} = useQuery({
     queryKey: ['weather'],
     queryFn: () => fetchCitiesWeather(cityIdList),
   });
-
-  // TODO: Remove logs
-  console.log('isLoading >', isLoading);
-  console.log('isRefetching >', isRefetching);
-  console.log('isError >', isError);
-  console.log('data >', data);
 
   const keyExtractor = ({city}: TCityWeather) => city;
 
@@ -29,13 +24,23 @@ const WeatherScreen = () => {
 
   const renderSeparator = () => <View style={styles.separator} />;
 
+  const renderListEmpty = () => <Loader />;
+
+  useEffect(() => {
+    if (isError) {
+      Alert.alert('Error', 'Something went wrong');
+    }
+  }, [isError]);
+
   return (
     <FlatList
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
       data={data ?? []}
       refreshing={isRefetching}
+      showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={renderSeparator}
+      ListEmptyComponent={renderListEmpty}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       onRefresh={refetch}
