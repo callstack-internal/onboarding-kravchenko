@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
-import TCityWeather from '@app/types/CityWeather';
+import ICityWeather from '@app/types/CityWeather';
 import {opacity} from '@app/theme/index';
 
 import styles from './styles';
@@ -12,7 +12,7 @@ import styles from './styles';
 type Props = {
   style?: ViewStyle;
   pressable?: boolean;
-  cityWeather: TCityWeather;
+  cityWeather: ICityWeather;
 };
 
 const CityWeather = ({style, pressable = true, cityWeather}: Props) => {

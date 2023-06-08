@@ -6,7 +6,7 @@ import fetchCitiesWeather from '@app/api/fetchCitiesWeather';
 import cityIdList from '@app/config/cityIdList';
 import CityWeather from '@app/components/CityWeather';
 import Loader from '@app/components/Loader';
-import TCityWeather from '@app/types/CityWeather';
+import ICityWeather from '@app/types/CityWeather';
 
 import styles from './styles';
 
@@ -16,9 +16,9 @@ const WeatherScreen = () => {
     queryFn: () => fetchCitiesWeather(cityIdList),
   });
 
-  const keyExtractor = ({city}: TCityWeather) => city;
+  const keyExtractor = ({city}: ICityWeather) => city;
 
-  const renderItem: ListRenderItem<TCityWeather> = ({item}) => (
+  const renderItem: ListRenderItem<ICityWeather> = ({item}) => (
     <CityWeather cityWeather={item} />
   );
 
