@@ -42,6 +42,7 @@ const App = () => {
             component={WeatherDetailsScreen}
             options={{
               headerTitle: '',
+              animation: Platform.OS === 'ios' ? 'default' : 'slide_from_right',
             }}
           />
 
