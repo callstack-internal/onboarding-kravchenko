@@ -14,11 +14,13 @@ export default StyleSheet.create({
   },
   title: {
     ...fonts.subheading,
+    color: colors.secondaryForeground,
     textAlign: 'center',
     marginTop: sizes.lg,
     marginBottom: sizes.md,
   },
   description: {
     ...fonts.caption,
+    color: colors.secondaryForeground,
   },
 });

@@ -24,7 +24,6 @@ export default StyleSheet.create({
   },
   statusTitle: {
     ...fonts.caption,
-    color: colors.secondaryForeground,
   },
   temperatureContainer: {
     width: sizes['1/4'],
