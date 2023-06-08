@@ -5,6 +5,7 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import CityWeather from '@app/components/CityWeather';
 import DetailsSquare from '@app/components/DetailsSquare';
+import buildWeatherDetails from '@app/config/weatherDetails';
 
 import styles from './styles';
 
@@ -12,14 +13,7 @@ const WeatherDetailsScreen = () => {
   const {params: cityWeather} =
     useRoute<RouteProp<RootStackParamList, RootStackScreen.WeatherDetails>>();
 
-  const {
-    temperatureFeelsLike,
-    windSpeed,
-    clouds,
-    visibility,
-    pressure,
-    humidity,
-  } = cityWeather;
+  const weatherDetails = buildWeatherDetails(cityWeather);
 
   return (
     <View style={styles.container}>
@@ -34,20 +28,9 @@ const WeatherDetailsScreen = () => {
         contentContainerStyle={styles.detailsContentContainer}
         showsVerticalScrollIndicator={false}
         bounces={false}>
-        <DetailsSquare
-          title="🌡️ Feels like"
-          value={`${temperatureFeelsLike} °C`}
-        />
-
-        <DetailsSquare title="💨 Wind speed" value={`${windSpeed} km/h`} />
-
-        <DetailsSquare title="☁️ Clouds" value={`${clouds} %`} />
-
-        <DetailsSquare title="👓 Visibility" value={`${visibility} m`} />
-
-        <DetailsSquare title="🗜️ Pressure" value={`${pressure} hPa`} />
-
-        <DetailsSquare title="💧 Humidity" value={`${humidity} %`} />
+        {weatherDetails.map((weatherDetail, index) => (
+          <DetailsSquare key={index} {...weatherDetail} />
+        ))}
       </ScrollView>
     </View>
   );

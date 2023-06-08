@@ -7,11 +7,14 @@ export default StyleSheet.create({
   container: {
     width: SQUARE,
     height: SQUARE,
+    borderRadius: borderRadius.sm,
+    backgroundColor: colors.secondaryBackground,
+  },
+  touchableContainer: {
+    flex: 1,
     padding: sizes.sm,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: borderRadius.sm,
-    backgroundColor: colors.secondaryBackground,
   },
   title: {
     ...fonts.caption,
