@@ -1,10 +1,11 @@
 import React from 'react';
-import {Button, Platform} from 'react-native';
+import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {QueryClientProvider} from '@tanstack/react-query';
 
 import queryClient from '@app/api/queryClient';
+import isIOS from '@app/config/isIOS';
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import WeatherScreen from '@app/screens/Weather';
 import WeatherDetailsScreen from '@app/screens/WeatherDetails';
@@ -42,7 +43,7 @@ const App = () => {
             component={WeatherDetailsScreen}
             options={{
               headerTitle: '',
-              animation: Platform.OS === 'ios' ? 'default' : 'slide_from_right',
+              animation: isIOS ? 'default' : 'slide_from_right',
             }}
           />
 
@@ -53,16 +54,15 @@ const App = () => {
               headerTitle: '',
               headerShown: true,
               presentation: 'transparentModal',
-              headerRight:
-                Platform.OS === 'ios'
-                  ? () => (
-                      <Button
-                        title="Done"
-                        color={colors.foreground}
-                        onPress={navigation.goBack}
-                      />
-                    )
-                  : undefined,
+              headerRight: isIOS
+                ? () => (
+                    <Button
+                      title="Done"
+                      color={colors.foreground}
+                      onPress={navigation.goBack}
+                    />
+                  )
+                : undefined,
             })}
           />
         </RootStack.Navigator>
