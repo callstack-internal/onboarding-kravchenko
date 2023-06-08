@@ -45,6 +45,7 @@ const fetchCitiesWeather = async (
 
     return result;
   } catch (error) {
+    // TODO: Handle API errors
     // TODO: Add some error tracking service
     console.error('Network error', {
       location: 'fetchCityWeather',

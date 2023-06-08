@@ -4,5 +4,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "java.compile.nullAnalysis.mode": "automatic"
 }
