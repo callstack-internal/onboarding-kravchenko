@@ -27,7 +27,7 @@ export default StyleSheet.create({
     color: colors.secondaryForeground,
   },
   temperatureContainer: {
-    maxWidth: sizes['1/4'],
+    width: sizes['1/4'],
     padding: sizes.sm,
     borderRadius: borderRadius.sm,
     backgroundColor: colors.background,
@@ -35,5 +35,6 @@ export default StyleSheet.create({
   temperatureTitle: {
     ...fonts.caption,
     color: colors.secondaryForeground,
+    textAlign: 'right',
   },
 });
