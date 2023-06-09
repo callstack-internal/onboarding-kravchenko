@@ -34,10 +34,10 @@ export const borderRadius = {
 
 export const colors = {
   transparent: 'transparent',
-  background: '#27374D',
-  secondaryBackground: '#526D82',
-  foreground: '#DDE6ED',
-  secondaryForeground: '#9DB2BF',
+  background: '#E9E9FF',
+  secondaryBackground: '#929DFF',
+  foreground: '#F1F1F1',
+  secondaryForeground: '#0E1E69',
 };
 
 export const fonts = {

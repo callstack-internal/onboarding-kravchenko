@@ -1,10 +1,17 @@
-import React from 'react';
-import {ScrollView, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {View} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 
 import {RootStackParamList, RootStackScreen} from '@app/types/navigation';
 import CityWeather from '@app/components/CityWeather';
-import DetailsRow from '@app/components/DetailsRow';
+import DetailsSquare from '@app/components/DetailsSquare';
+import buildWeatherDetails from '@app/config/weatherDetails';
+import {sizes} from '@app/theme/index';
 
 import styles from './styles';
 
@@ -12,14 +19,22 @@ const WeatherDetailsScreen = () => {
   const {params: cityWeather} =
     useRoute<RouteProp<RootStackParamList, RootStackScreen.WeatherDetails>>();
 
-  const {
-    temperatureFeelsLike,
-    windSpeed,
-    clouds,
-    visibility,
-    pressure,
-    humidity,
-  } = cityWeather;
+  const offset = useSharedValue(sizes.screenHeight / 2);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{translateY: offset.value}],
+    };
+  });
+
+  const weatherDetails = buildWeatherDetails(cityWeather);
+
+  useEffect(() => {
+    offset.value = withSpring(0, {
+      damping: 12.5,
+      stiffness: 75,
+    });
+  }, [offset]);
 
   return (
     <View style={styles.container}>
@@ -29,26 +44,15 @@ const WeatherDetailsScreen = () => {
         cityWeather={cityWeather}
       />
 
-      <ScrollView
-        style={styles.detailsContainer}
+      <Animated.ScrollView
+        style={[styles.detailsContainer, animatedStyles]}
         contentContainerStyle={styles.detailsContentContainer}
         showsVerticalScrollIndicator={false}
         bounces={false}>
-        <DetailsRow
-          title="🌡️ Feels like"
-          value={`${temperatureFeelsLike} °C`}
-        />
-
-        <DetailsRow title="💨 Wind speed" value={`${windSpeed} km/h`} />
-
-        <DetailsRow title="☁️ Clouds" value={`${clouds} %`} />
-
-        <DetailsRow title="👓 Visibility" value={`${visibility} m`} />
-
-        <DetailsRow title="🗜️ Pressure" value={`${pressure} hPa`} />
-
-        <DetailsRow title="💧 Humidity" value={`${humidity} %`} />
-      </ScrollView>
+        {weatherDetails.map((weatherDetail, index) => (
+          <DetailsSquare key={index} {...weatherDetail} />
+        ))}
+      </Animated.ScrollView>
     </View>
   );
 };
