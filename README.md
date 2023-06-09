@@ -1,10 +1,11 @@
 # It is a repo for the onboarding application of Michael (Mykhailo) Kravchenko
 
-### Android
-https://github.com/callstack-internal/onboarding-kravchenko/assets/57314631/421505a0-a47f-452e-b69c-02abf34cc2b9
-
 ### IOS
-https://github.com/callstack-internal/onboarding-kravchenko/assets/57314631/72c2949e-e7c0-46c2-a3dc-94197bcc9ba7
+https://github.com/callstack-internal/onboarding-kravchenko/assets/57314631/79ac549c-2e93-45cc-a0e5-962cd4fe0b5d
+
+
+### Android
+https://github.com/callstack-internal/onboarding-kravchenko/assets/57314631/c3ea4c50-01b6-414d-a146-d94c1bcee5e6
 
 ### Getting .env file
 
