@@ -1,75 +1,49 @@
-import React from 'react';
-import {FlatList, ListRenderItem, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Alert, FlatList, ListRenderItem, View} from 'react-native';
+import {useQuery} from '@tanstack/react-query';
 
-import CityWeather, {
-  Props as CityWeatherProps,
-} from '@app/components/CityWeather';
+import fetchCitiesWeather from '@app/api/fetchCitiesWeather';
+import cityIdList from '@app/config/cityIdList';
+import CityWeather from '@app/components/CityWeather';
+import Loader from '@app/components/Loader';
+import ICityWeather from '@app/types/CityWeather';
 
 import styles from './styles';
 
-// TODO: Remove once API is ready
-const CITIES: CityWeatherProps[] = [
-  {
-    cityId: 43423,
-    city: 'Sumy',
-    status: 'Clear',
-    iconCode: '01d',
-    temperature: 22.5,
-  },
-  {
-    cityId: 53423,
-    city: 'Kyiv',
-    status: 'Few clouds',
-    iconCode: '02d',
-    temperature: 20.3,
-  },
-  {
-    cityId: 43453,
-    city: 'Warsaw',
-    status: 'Scattered clouds',
-    iconCode: '03d',
-    temperature: 17.3,
-  },
-  {
-    cityId: 43423,
-    city: 'Sumy',
-    status: 'Clear',
-    iconCode: '01d',
-    temperature: 22.5,
-  },
-  {
-    cityId: 53423,
-    city: 'Kyiv',
-    status: 'Few clouds',
-    iconCode: '02d',
-    temperature: 20.3,
-  },
-  {
-    cityId: 43453,
-    city: 'Warsaw',
-    status: 'Scattered clouds',
-    iconCode: '03d',
-    temperature: 17.3,
-  },
-];
-
 const WeatherScreen = () => {
-  const keyExtractor = (_: CityWeatherProps, index: number) => index.toString();
+  const {data, isError, isRefetching, refetch} = useQuery({
+    queryKey: ['weather'],
+    queryFn: () => fetchCitiesWeather(cityIdList),
+  });
 
-  const renderItem: ListRenderItem<CityWeatherProps> = ({item}) => (
-    <CityWeather {...item} />
+  const keyExtractor = ({city}: ICityWeather) => city;
+
+  const renderItem: ListRenderItem<ICityWeather> = ({item}) => (
+    <CityWeather cityWeather={item} />
   );
 
   const renderSeparator = () => <View style={styles.separator} />;
+
+  const renderListEmpty = () => <Loader />;
+
+  useEffect(() => {
+    if (isError) {
+      Alert.alert('Error', 'Something went wrong');
+    }
+  }, [isError]);
 
   return (
     <FlatList
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
-      data={CITIES}
+      data={data ?? []}
+      refreshing={isRefetching}
+      showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={renderSeparator}
+      ListEmptyComponent={renderListEmpty}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      onRefresh={refetch}
     />
   );
 };

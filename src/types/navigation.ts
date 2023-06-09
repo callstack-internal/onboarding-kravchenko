@@ -1,3 +1,5 @@
+import CityWeather from './CityWeather';
+
 export enum RootStackScreen {
   Weather = 'Weather',
   WeatherDetails = 'WeatherDetails',
@@ -5,7 +7,5 @@ export enum RootStackScreen {
 
 export type RootStackParamList = {
   [RootStackScreen.Weather]: undefined;
-  [RootStackScreen.WeatherDetails]: {
-    cityId: number;
-  };
+  [RootStackScreen.WeatherDetails]: CityWeather;
 };
